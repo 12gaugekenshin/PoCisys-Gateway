@@ -8,7 +8,7 @@ services:
       PROXY_AUTH_ADD: "true"
 
   server:
-    image: ghcr.io/12gaugekenshin/pocisys-gateway:0.1.0
+    image: ghcr.io/12gaugekenshin/pocisys-gateway:0.1.1
     restart: on-failure
     init: true
     read_only: true
