@@ -25,7 +25,7 @@ checks = {
     "read_only_root": "read_only: true" in compose,
     "no_new_privileges": "no-new-privileges:true" in compose,
     "persistent_app_data": "${APP_DATA_DIR}/data:/data" in compose,
-    "dependency_declared": "pocisys-gpu-runtime" in manifest,
+    "cross_store_dependency_omitted": "dependencies: []" in manifest,
     "managed_redirect_rejected": "cannot be changed from the dashboard" in source,
     "receipt_header_returned": "X-PoCiSys-Receipt-Id" in forwarder,
     "evidence_contract": (root / "docs/GATEWAY-MONITOR-CORRELATION.md").is_file(),
