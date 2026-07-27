@@ -1,0 +1,39 @@
+PoCiSys Gateway for umbrelOS v0.1.0
+Build verification: 2026-07-27
+
+SOURCE AND PACKAGE
+- Standalone .NET 9 Gateway publishes successfully in Release mode.
+- Umbrel package verification passes 11 security/structure checks.
+- Standalone Gateway tests: 19 passed, 0 failed.
+- Full PoCiSys regression suite: 49 passed, 0 failed.
+
+BEHAVIOR VERIFIED
+- Ollama and OpenAI-compatible routes are forwarded without retaining text.
+- Each response returns X-PoCiSys-Receipt-Id for exact receipt correlation.
+- Receipts contain bounded metadata/hashes and exclude tested prompt/session text.
+- Deployment-managed backend can be inspected and prompt-free tested.
+- Re-saving the identical managed endpoint works; redirect attempts are rejected.
+- Optional Gateway evidence survives restart, verifies its ECDSA identity and
+  chain, detects metadata tampering, and compacts to a signed bounded window.
+- Observer receipt verification rejects mismatched public-key identity and
+  unsupported signature-algorithm declarations.
+
+UMBrel SECURITY DEFAULTS VERIFIED
+- Ollama port 11434 is not published to the LAN.
+- Backend uses the private pocisys-gpu-runtime_runtime_1 network alias.
+- Gateway container is unprivileged, uses UID 10001, a read-only root, and
+  no-new-privileges. Only /data and a bounded temporary filesystem are writable.
+- Live receipt capacity is bounded at 500 and is intentionally ephemeral.
+
+LIVE P100 PRECHECK
+- Hermes reached qwen3.5:9b-64k through the existing private GPU Runtime alias.
+- Existing GPU Runtime safe test completed with thinking disabled, a 64-token
+  ceiling, 2K context, and 45-second timeout at 34.25 tokens/second.
+
+NOT YET EXECUTED
+- Container image build was not run locally because Docker is not installed on
+  this Windows workstation. The included GitHub Actions workflow builds and
+  publishes the image only from a v* release tag.
+- The new companion has not been pushed, installed, or connected to Hermes.
+- After the first GHCR release, pinning the Umbrel compose image to its immutable
+  sha256 digest is recommended before deployment.
