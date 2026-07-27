@@ -2,7 +2,7 @@ manifestVersion: 1
 id: pocisys-gateway
 category: ai
 name: PoCiSys Gateway
-version: "0.1.0"
+version: "0.1.1"
 tagline: Privacy-preserving measurement gateway for local AI
 icon: https://raw.githubusercontent.com/12gaugekenshin/PoCiSys-Gateway/main/pocisys-gateway/icon.svg
 description: >-
@@ -27,11 +27,10 @@ support: https://github.com/12gaugekenshin/PoCiSys-Gateway/issues
 port: 8719
 gallery: []
 releaseNotes: >-
-  Initial isolated Umbrel companion release with a deployment-managed private
-  P100 backend, bounded ephemeral receipts, response receipt correlation, and
-  prompt-free connection testing.
-dependencies:
-  - pocisys-gpu-runtime
+  Fixes installation from a standalone Community App Store by removing an
+  invalid cross-store dependency declaration. The Gateway still connects to
+  the separately installed PoCiSys GPU Runtime over Umbrel's private network.
+dependencies: []
 path: ""
 defaultUsername: ""
 defaultPassword: ""
