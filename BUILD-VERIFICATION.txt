@@ -1,4 +1,4 @@
-PoCiSys Gateway for umbrelOS v0.1.4
+PoCiSys Gateway for umbrelOS v0.1.5
 Build verification: 2026-07-29
 
 SOURCE AND PACKAGE

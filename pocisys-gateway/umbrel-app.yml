@@ -2,7 +2,7 @@ manifestVersion: 1
 id: pocisys-gateway
 category: ai
 name: PoCiSys Gateway
-version: "0.1.4"
+version: "0.1.5"
 tagline: Privacy-preserving measurement gateway for local AI
 icon: https://raw.githubusercontent.com/12gaugekenshin/PoCiSys-Gateway/main/pocisys-gateway/icon.svg
 description: >-

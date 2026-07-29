@@ -240,6 +240,8 @@ public sealed class GatewayCoreTests
         Assert.Contains("Maximum output tokens", ChatPage.Html);
         Assert.Contains("think:thinking.value==='normal'", ChatPage.Html);
         Assert.Contains("options:{num_predict:limit}", ChatPage.Html);
+        Assert.Contains("pocisys-chat-preferences", ChatPage.Html);
+        Assert.Contains("restorePreferences();loadModels()", ChatPage.Html);
         Assert.Contains("max_tokens:limit", ChatPage.Html);
     }
 
