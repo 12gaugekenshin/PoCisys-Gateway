@@ -229,6 +229,9 @@ public sealed class GatewayCoreTests
         Assert.Contains("do not by themselves prove", Dashboard.Html);
         Assert.Equal(1, Dashboard.Html.Split("id=\"requests\"", StringSplitOptions.None).Length - 1);
         Assert.Contains("id=\"requestCount\"", Dashboard.Html);
+        Assert.Contains("<th>Why</th>", Dashboard.Html);
+        Assert.Contains("reason(x.findings)", Dashboard.Html);
+        Assert.Contains("reason(x.lastFindings)", Dashboard.Html);
         Assert.Contains("Save and test connection", Dashboard.Html);
         Assert.Contains("Built-in reference chat", Dashboard.Html);
         Assert.Contains("Private reference chat", ChatPage.Html);

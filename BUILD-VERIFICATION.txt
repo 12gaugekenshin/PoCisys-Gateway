@@ -1,4 +1,4 @@
-PoCiSys Gateway for umbrelOS v0.1.3
+PoCiSys Gateway for umbrelOS v0.1.4
 Build verification: 2026-07-29
 
 SOURCE AND PACKAGE
@@ -9,6 +9,7 @@ SOURCE AND PACKAGE
 
 BEHAVIOR VERIFIED
 - Private Chat exposes explicit Ollama thinking and output-token controls.
+- Dashboard assessments show their concrete, text-free finding explanations.
 - Deterministic tests default to thinking disabled and a 256-token ceiling.
 - OpenAI-compatible Chat requests receive the selected max_tokens ceiling.
 - Ollama and OpenAI-compatible routes are forwarded without retaining text.
