@@ -40,6 +40,12 @@ retaining its text.
 
 ## Integration endpoint
 
+The private Chat sidebar provides explicit **Thinking** and **Maximum output
+tokens** controls. Ollama deterministic tests default to thinking disabled with
+a 256-token ceiling. Normal model reasoning remains selectable when reasoning
+latency is part of the test. OpenAI-compatible requests receive the selected
+`max_tokens` ceiling without assuming a provider-specific reasoning parameter.
+
 Other Umbrel apps use `http://pocisys-gateway_server_1:8719` as their Ollama or
 OpenAI-compatible base URL. The dashboard is served through Umbrel on port
 `8719`.

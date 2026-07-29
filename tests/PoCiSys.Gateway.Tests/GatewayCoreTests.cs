@@ -233,6 +233,11 @@ public sealed class GatewayCoreTests
         Assert.Contains("Built-in reference chat", Dashboard.Html);
         Assert.Contains("Private reference chat", ChatPage.Html);
         Assert.Contains("Nothing is saved when this tab closes", ChatPage.Html);
+        Assert.Contains("Thinking (Ollama)", ChatPage.Html);
+        Assert.Contains("Maximum output tokens", ChatPage.Html);
+        Assert.Contains("think:thinking.value==='normal'", ChatPage.Html);
+        Assert.Contains("options:{num_predict:limit}", ChatPage.Html);
+        Assert.Contains("max_tokens:limit", ChatPage.Html);
     }
 
     [Fact]
