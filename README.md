@@ -1,51 +1,40 @@
-# PoCiSys Gateway for umbrelOS
+# PoCiSys Gateway
 
-PoCiSys Gateway is a separate, privacy-preserving measurement layer between an
-application and a local Ollama or OpenAI-compatible runtime. This Umbrel package
-targets the private Ollama service provided by **PoCiSys GPU Runtime**.
+PoCiSys Gateway sits between an app and PoCiSys GPU Runtime. It forwards the
+AI response unchanged while recording useful operational signals such as model
+name, timing, token counts, failures, and body hashes. It does not retain prompt
+or response text.
 
-## Honest assurance boundary
+## Before installing
 
-The Gateway can attest to what it directly observes while forwarding traffic:
-route, time, byte counts, body hashes, reported model, provider-reported token
-usage, and failures. It does **not** save prompt or response text. These records
-do not prove that a response was correct, that weights were unmodified, or that
-inference executed on a particular GPU.
+- Install **PoCiSys GPU Runtime** first.
+- Wait until GPU Runtime reports **READY**.
+- Install and test at least one local Ollama model.
 
-## Security defaults
+## Install
 
-- Ollama remains private on Umbrel's app network; port `11434` is not published.
-- The backend URL is deployment-managed and cannot be redirected in the UI.
-- The Gateway container is unprivileged and runs as UID `10001`.
-- Receipts and baselines are bounded in memory and disappear on restart.
-- Only preferences and the deployment-selected backend record use `/data`.
+1. Add [12Gauge's PoCiSys Store](https://github.com/12gaugekenshin/12Gauge-Umbrel-Community-Store#add-the-store-to-umbrel) to Umbrel.
+2. Install **PoCiSys Gateway**.
+3. Open the app and confirm the backend shows as connected.
+4. Send a short message in **Chat** to confirm the complete path works.
 
-An opt-in signed evidence window is included but disabled for the first live
-installation. When enabled, it retains a bounded, ECDSA-signed hash chain of
-Gateway metadata under `/data`, labels it `gateway_self_attested`, and exposes
-verification status without claiming independent proof of execution.
+No API key or public port is required. Gateway reaches GPU Runtime through
+Umbrel's private app network.
 
-## Local verification
+## What the dashboard shows
 
-```text
-python tools/verify_package.py
-dotnet test tests/PoCiSys.Gateway.Tests/PoCiSys.Gateway.Tests.csproj -c Release
-docker build -t pocisys-gateway:dev .
-```
+- Recent measured AI requests and failures
+- Latency, token usage, and reported model identity
+- Learned performance baselines and clear attention reasons
+- Private test chat with thinking and output-length controls
 
-After installation, run `tools/live_validate.py` from a container attached to
-Umbrel's app network. It sends one fixed, bounded request and uses the returned
-`X-PoCiSys-Receipt-Id` to confirm that the exact exchange was measured without
-retaining its text.
+These measurements help detect changes and anomalies. They do not prove that
+an answer was correct or that a particular physical GPU performed inference.
 
-## Integration endpoint
+## Privacy and storage
 
-The private Chat sidebar provides explicit **Thinking** and **Maximum output
-tokens** controls. Ollama deterministic tests default to thinking disabled with
-a 256-token ceiling. Normal model reasoning remains selectable when reasoning
-latency is part of the test. OpenAI-compatible requests receive the selected
-`max_tokens` ceiling without assuming a provider-specific reasoning parameter.
+Prompt and response text are not saved. Live receipts and baselines are bounded
+and normally disappear when Gateway restarts. The optional persistent evidence
+window remains disabled unless you deliberately enable it.
 
-Other Umbrel apps use `http://pocisys-gateway_server_1:8719` as their Ollama or
-OpenAI-compatible base URL. The dashboard is served through Umbrel on port
-`8719`.
+Source and support: [PoCiSys Gateway on GitHub](https://github.com/12gaugekenshin/PoCiSys-Gateway)
